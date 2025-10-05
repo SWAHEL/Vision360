@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DGI Risk Analysis Platform Design System - KYT Light Theme */
+
+@layer base {
+  :root {
+    /* DGI Brand Colors - Cyan Scheme */
+    --dgi-cyan-primary: 187 100% 42%;        /* #00BCD4 - main accent */
+    --dgi-cyan-dark: 188 100% 33%;           /* #0097A7 - hover states */
+    --dgi-cyan-light: 187 74% 85%;           /* #B2EBF2 - light accents */
+    --dgi-emerald: 154 100% 25%;             /* #007E3A - success states */
+    --dgi-deep-red: 0 100% 33%;              /* #A80000 - critical flags */
+    --dgi-gold: 41 94% 55%;                  /* #F5A623 - warnings */
+    
+    /* Light Mode Base Colors */
+    --background: 200 25% 97%;               /* Off-white #f4f7f9 */
+    --foreground: 0 0% 20%;                  /* Dark gray #333 */
+    
+    /* Navigation */
+    --nav-background: 0 0% 100%;             /* White navigation */
+    --nav-foreground: 0 0% 20%;
+    
+    /* Cards and Surfaces */
+    --card: 0 0% 100%;                       /* White cards */
+    --card-foreground: 0 0% 20%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+    
+    /* Primary Actions - Cyan */
+    --primary: var(--dgi-cyan-primary);
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary Elements */
+    --secondary: 200 15% 94%;                /* Light gray */
+    --secondary-foreground: 0 0% 25%;
+    
+    /* Success States */
+    --success: var(--dgi-emerald);
+    --success-foreground: 0 0% 100%;
+    
+    /* Warning States */
+    --warning: var(--dgi-gold);
+    --warning-foreground: 0 0% 20%;
+    
+    /* Destructive/Error States */
+    --destructive: var(--dgi-deep-red);
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Muted Elements */
+    --muted: 200 10% 92%;
+    --muted-foreground: 0 0% 45%;
+    
+    /* Accents */
+    --accent: var(--dgi-cyan-light);
+    --accent-foreground: 0 0% 25%;
+    
+    /* Graph Node Colors */
+    --node-company: var(--dgi-cyan-primary);  /* Cyan for companies */
+    --node-person: 220 85% 65%;               /* Blue for persons */
+    --node-document: 270 75% 70%;             /* Purple for documents */
+    --node-location: 154 60% 60%;             /* Green for locations */
+    
+    /* Borders and Inputs */
+    --border: 200 15% 88%;
+    --input: 0 0% 100%;
+    --ring: var(--dgi-cyan-primary);
+    
+    /* Risk Level Colors */
+    --risk-low: 120 60% 50%;                 /* Green */
+    --risk-medium: 220 85% 65%;              /* Blue */
+    --risk-high: 0 85% 55%;                  /* Red */
+    
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

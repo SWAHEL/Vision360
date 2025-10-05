@@ -1,0 +1,21 @@
+{
+  "settings": {
+    "analysis": { "analyzer": { "fr_text": { "type": "standard" } } }
+  },
+  "mappings": {
+    "properties": {
+      "id": { "type": "keyword" },
+      "identifiantFiscal": { "type": "keyword" },
+      "ice": { "type": "keyword" },
+      "cin": { "type": "keyword" },
+      "nom": { "type": "text", "analyzer": "fr_text", "fields": { "raw": { "type": "keyword" } } },
+      "telephone": { "type": "keyword" },
+      "adresse": { "type": "text", "analyzer": "fr_text" },
+      "secteur": { "type": "keyword" },
+      "ville": { "type": "keyword" },
+      "dri": { "type": "keyword" },
+      "dip": { "type": "keyword" },
+      "imageUrl": { "type": "keyword" }
+    }
+  }
+}

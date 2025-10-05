@@ -1,0 +1,71 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:vision360}
+    username: ${POSTGRES_USER:vision}
+    password: ${POSTGRES_PASSWORD:visionpwd}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.jdbc.time_zone: UTC
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    locations: classpath:db/migration
+
+  security:
+    user:
+      name: ${DEV_USER:dev}
+      password: ${DEV_PASS:devpass}
+      roles: ADMIN
+
+  # Spring Boot official ES client config
+  elasticsearch:
+    uris: ${ES_URIS:http://localhost:9200}
+    username: ${ES_USERNAME:elastic}
+    password: ${ES_PASSWORD:changeme}
+
+# If parts of your code read custom keys, keep these in sync
+elasticsearch:
+  url: ${ES_URL:${ES_URIS:http://localhost:9200}}
+  username: ${ES_USERNAME:elastic}
+  password: ${ES_PASSWORD:changeme}
+
+# ✅ Make the ES index configurable for SearchService (@Value("${es.taxpayer.index:...}"))
+es:
+  taxpayer:
+    index: ${ES_TAXPAYER_INDEX:taxpayer_search}
+
+logging:
+  level:
+    ma.dgi.vision360: INFO
+    org.springframework: INFO
+    org.springframework.security: WARN
+    org.hibernate.SQL: DEBUG
+    org.flywaydb: DEBUG
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    # Inside docker-compose network, use service names
+    url: jdbc:postgresql://postgres:5432/${POSTGRES_DB:vision360}
+    username: ${POSTGRES_USER:vision}
+    password: ${POSTGRES_PASSWORD:visionpwd}
+  elasticsearch:
+    uris: http://elasticsearch:9200
+
+# keep custom keys in docker profile too (if your code uses them)
+elasticsearch:
+  url: http://elasticsearch:9200

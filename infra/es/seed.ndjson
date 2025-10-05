@@ -1,0 +1,4 @@
+{ "index": { "_index": "taxpayer_search", "_id": "1" } }
+{ "id": "1", "identifiantFiscal": "IF001", "ice": "ICE001", "cin": "AA111", "nom": "Soci?t? Atlas", "secteur": "Industrie", "ville": "Casablanca", "adresse": "Boulevard 1", "dri": "DRI-CASA", "dip": "DIP-01", "imageUrl": "" }
+{ "index": { "_index": "taxpayer_search", "_id": "2" } }
+{ "id": "2", "identifiantFiscal": "IF002", "ice": "ICE002", "cin": "BB222", "nom": "Al Maghrib Services", "secteur": "Services", "ville": "Rabat", "adresse": "Avenue 2", "dri": "DRI-RABAT", "dip": "DIP-02", "imageUrl": "" }

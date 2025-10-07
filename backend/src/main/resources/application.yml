@@ -69,3 +69,11 @@ spring:
 # keep custom keys in docker profile too (if your code uses them)
 elasticsearch:
   url: http://elasticsearch:9200
+
+arangodb:
+  host: ${ARANGO_HOST:localhost}
+  port: ${ARANGO_PORT:8529}
+  user: ${ARANGO_USER:root}
+  password: ${ARANGO_PASSWORD:arangopass123!}
+  database: ${ARANGO_DB:vision360}
+

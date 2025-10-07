@@ -1,0 +1,4 @@
+﻿{
+  "query": "FOR v,e,p IN 1..2 ANY @start employs, hasPhone, hasAddress, ownsVehicle, locatedIn, partnersWith, belongsToSector RETURN {v,e}",
+  "bindVars": { "start": "companies/RENACO" }
+}

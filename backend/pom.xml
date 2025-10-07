@@ -51,6 +51,7 @@
       <artifactId>postgresql</artifactId>
     </dependency>
 
+
     <!-- Flyway (core + PostgreSQL database module) -->
     <dependency>
       <groupId>org.flywaydb</groupId>
@@ -62,6 +63,14 @@
       <artifactId>flyway-database-postgresql</artifactId>
       <version>${flyway.version}</version>
     </dependency>
+
+    <!-- ArangoDB Java driver -->
+    <dependency>
+      <groupId>com.arangodb</groupId>
+      <artifactId>arangodb-java-driver</artifactId>
+      <version>7.3.0</version>
+    </dependency>
+
 
     <!-- OpenAPI (Swagger UI) -->
     <dependency>

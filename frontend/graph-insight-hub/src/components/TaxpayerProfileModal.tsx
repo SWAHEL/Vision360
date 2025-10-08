@@ -17,9 +17,11 @@ interface TaxpayerProfileModalProps {
     name: string;
     identifiantFiscal: string;
     ice: string;
+
     avatar?: string;
   } | null;
 }
+
 
 interface WatchList {
   id: string;

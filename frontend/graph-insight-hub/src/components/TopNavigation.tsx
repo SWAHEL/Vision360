@@ -59,7 +59,7 @@ const TopNavigation = ({ currentPage }: TopNavigationProps) => {
               </Button>
             </Link>
             <Button variant="ghost" size="sm">CONNEXIONS</Button>
-            <Button variant="ghost" size="sm">CARTOGRAPHIE</Button>
+            
           </div>
         </div>
         
@@ -77,7 +77,7 @@ const TopNavigation = ({ currentPage }: TopNavigationProps) => {
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input 
-              placeholder="🔎 Rechercher par ICE, Nom, RC, CIN..."
+              placeholder="Rechercher par ICE, Nom, RC, CIN..."
               className="pl-10 bg-input border-border focus:ring-dgi-cyan-primary focus:border-dgi-cyan-primary"
             />
           </div>

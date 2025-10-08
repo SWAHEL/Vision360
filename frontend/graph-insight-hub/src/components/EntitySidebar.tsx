@@ -1,128 +1,158 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, AlertTriangle, Building2, Mail, Phone } from "lucide-react";
+import { Building2, Mail, Phone, Globe, CheckCircle } from "lucide-react";
 
-const EntitySidebar = () => {
+export type Entity = {
+  id: string;
+  identifiantFiscal?: string;
+  ice?: string;
+  cin?: string | null;
+  nom: string;
+  secteur?: string;
+  ville?: string;
+  adresse?: string;
+  telephone?: string;
+  category?: string;
+  dri?: string;
+  dip?: string;
+  imageUrl?: string | null;
+};
+
+const F = (v: any, fallback = "—") => (v === null || v === undefined || v === "" ? fallback : v);
+
+const EntitySidebar = ({ entity }: { entity: Entity }) => {
   return (
     <div className="w-80 bg-card border-r border-border p-6 space-y-6 overflow-y-auto">
-      {/* DGI Logo */}
-      <div className="flex items-center justify-center mb-6">
+      {/* Logo / Avatar */}
+      <div className="flex items-center justify-center mb-4">
         <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
           <Building2 className="w-8 h-8 text-primary-foreground" />
         </div>
       </div>
-      
-      {/* Entity Info */}
+
+      {/* Header */}
       <Card className="bg-secondary/50">
         <CardContent className="p-4 space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="font-semibold text-card-foreground">SOCIETE ATLAS SARL</h3>
-            <Badge variant="outline" className="bg-success/10 text-success border-success/20">
+            <h3 className="font-semibold text-card-foreground">
+              {F(entity.nom, "—")}
+            </h3>
+            <Badge
+              variant="outline"
+              className="bg-success/10 text-success border-success/20"
+            >
               <CheckCircle className="w-3 h-3 mr-1" />
               Vérifié
             </Badge>
           </div>
-          
+
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="secondary" className="text-xs">
+              Contribuable
+            </Badge>
+            <Badge className="bg-emerald-500/15 text-emerald-600 border-emerald-500/20 text-xs">
+              En activité
+            </Badge>
+          </div>
+
           <div className="space-y-3 text-sm">
-            <div>
-              <span className="text-muted-foreground">ID Entité:</span>
-              <div className="font-mono text-card-foreground">ENT-2024-00156</div>
-            </div>
-            
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <span className="text-muted-foreground">ICE:</span>
-                <div className="font-mono text-card-foreground">002345678901234</div>
+                <span className="text-muted-foreground">Secteur :</span>
+                <div className="text-card-foreground">{F(entity.secteur)}</div>
               </div>
               <div>
-                <span className="text-muted-foreground">RC:</span>
-                <div className="font-mono text-card-foreground">123456</div>
+                <span className="text-muted-foreground">Catégorie :</span>
+                <div className="text-card-foreground">{F(entity.category)}</div>
               </div>
             </div>
-            
-            <div>
-              <span className="text-muted-foreground">CNSS:</span>
-              <div className="font-mono text-card-foreground">9876543210</div>
-            </div>
-            
-            <div>
-              <span className="text-muted-foreground">Capital:</span>
-              <div className="text-card-foreground">
-                <span className="text-dgi-gold">50%</span> / <span className="text-node-person">50%</span>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <span className="text-muted-foreground">Ville :</span>
+                <div className="text-card-foreground">{F(entity.ville)}</div>
               </div>
+              <div>
+                <span className="text-muted-foreground">DRI / DIP :</span>
+                <div className="text-card-foreground">
+                  {F(entity.dri)} / {F(entity.dip)}
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <span className="text-muted-foreground">Adresse :</span>
+              <div className="text-card-foreground">{F(entity.adresse)}</div>
+            </div>
+
+            {/* Optional static extras to look complete */}
+            <div>
+              <span className="text-muted-foreground">Date de création :</span>
+              <div className="text-card-foreground">15/09/2015</div>
+            </div>
+            <div>
+              <span className="text-muted-foreground">Statut juridique :</span>
+              <div className="text-card-foreground">SARL</div>
             </div>
           </div>
         </CardContent>
       </Card>
-      
-      {/* Contact Info */}
+
+      {/* Identifiants */}
       <Card className="bg-secondary/50">
         <CardContent className="p-4 space-y-3">
-          <h4 className="font-medium text-card-foreground">Informations de Contact</h4>
-          
+          <h4 className="font-medium text-card-foreground">Identifiants</h4>
+          <div className="space-y-2 text-sm">
+            <div>
+              <span className="text-muted-foreground">Identifiant Fiscal :</span>
+              <div className="font-mono text-card-foreground">
+                {F(entity.identifiantFiscal)}
+              </div>
+            </div>
+            <div>
+              <span className="text-muted-foreground">ICE :</span>
+              <div className="font-mono text-card-foreground">{F(entity.ice)}</div>
+            </div>
+            <div>
+              <span className="text-muted-foreground">CIN :</span>
+              <div className="font-mono text-card-foreground">{F(entity.cin)}</div>
+            </div>
+            <div>
+              <span className="text-muted-foreground">RC :</span>
+              <div className="font-mono text-card-foreground">451233</div>
+            </div>
+            <div>
+              <span className="text-muted-foreground">CNSS :</span>
+              <div className="font-mono text-card-foreground">10877129</div>
+            </div>
+            <div>
+              <span className="text-muted-foreground">Patente :</span>
+              <div className="font-mono text-card-foreground">PT-39281</div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Contact */}
+      <Card className="bg-secondary/50">
+        <CardContent className="p-4 space-y-3">
+          <h4 className="font-medium text-card-foreground">
+            Informations de Contact
+          </h4>
           <div className="space-y-2 text-sm">
             <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-muted-foreground" />
-              <span className="text-card-foreground">contact@atlas-sarl.ma</span>
-            </div>
-            
-            <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-muted-foreground" />
-              <span className="text-card-foreground">+212 5 22 12 34 56</span>
+              <span className="text-card-foreground">
+                {F(entity.telephone, "+212 5 20 10 03 03")}
+              </span>
             </div>
-          </div>
-        </CardContent>
-      </Card>
-      
-      {/* Embedded Mini Map */}
-      <Card className="bg-secondary/50">
-        <CardContent className="p-4 space-y-3">
-          <h4 className="font-medium text-card-foreground">Localisation</h4>
-          
-          <div className="w-full h-32 bg-muted rounded-lg relative overflow-hidden border border-border">
-            {/* Mini Map Placeholder */}
-            <div className="absolute inset-0 bg-gradient-to-br from-dgi-cyan-light/20 to-secondary/50">
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="w-3 h-3 bg-dgi-deep-red rounded-full animate-pulse"></div>
-              </div>
-              <div className="absolute bottom-2 left-2 text-xs text-muted-foreground bg-background/80 px-2 py-1 rounded">
-                📍 Salé, Maroc
-              </div>
+            <div className="flex items-center gap-2">
+              <Mail className="w-4 h-4 text-muted-foreground" />
+              <span className="text-card-foreground">contact@zenitech.ma</span>
             </div>
-          </div>
-          
-          <div className="text-xs text-muted-foreground">
-            Fibaco Confection - Zone Industrielle
-          </div>
-        </CardContent>
-      </Card>
-      
-      {/* Risk Indicators */}
-      <Card className="bg-secondary/50">
-        <CardContent className="p-4 space-y-3">
-          <h4 className="font-medium text-card-foreground">Indicateurs de Risque</h4>
-          
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-muted-foreground">Déclarations</span>
-              <Badge variant="outline" className="bg-success/10 text-success border-success/20">
-                À jour
-              </Badge>
-            </div>
-            
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-muted-foreground">Paiements</span>
-              <Badge variant="outline" className="bg-warning/10 text-warning border-warning/20">
-                <AlertTriangle className="w-3 h-3 mr-1" />
-                Retard 15j
-              </Badge>
-            </div>
-            
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-muted-foreground">Contrôles</span>
-              <Badge variant="outline" className="bg-success/10 text-success border-success/20">
-                Conforme
-              </Badge>
+            <div className="flex items-center gap-2">
+              <Globe className="w-4 h-4 text-muted-foreground" />
+              <span className="text-card-foreground">www.zenitech.ma</span>
             </div>
           </div>
         </CardContent>

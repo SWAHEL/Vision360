@@ -13,14 +13,19 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain security(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf -> csrf.disable()) // allow POST/PUT from tools like Postman
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                        // Open the new graph endpoints:
-                        .requestMatchers("/api/v1/graph/all").permitAll()
-                        .requestMatchers("/api/v1/graph/company/**").permitAll()
-                        // If you also want neighbors open during dev, uncomment:
-                        // .requestMatchers("/api/v1/graph/neighbors").permitAll()
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
+                        .requestMatchers(
+                                "/api/v1/graph/all",
+                                "/api/v1/graph/company/**",
+                                "/api/v1/graph/neighbors",
+                                "/api/v1/graph/counts"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())

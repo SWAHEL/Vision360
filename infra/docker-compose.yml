@@ -41,15 +41,16 @@ services:
       discovery.type: single-node
       xpack.security.enabled: "true"
       ELASTIC_PASSWORD: ${ES_PASSWORD}
-      xpack.security.http.ssl.enabled: "false"
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     ports:
       - "${ES_HTTP_PORT}:9200"
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "wget -qO- http://localhost:9200 >/dev/null 2>&1 || exit 1",
-        ]
+      # return healthy on 200 (OK) or 401 (Unauthorized when not passing creds)
+      test: ["CMD-SHELL", "sh -c \"code=$(curl -s -o /dev/null -w '%{http_code}' -u elastic:${ES_PASSWORD} http://localhost:9200 || echo 000); echo \\$code; [ \\$code -eq 200 -o \\$code -eq 401 ]\""]
       interval: 10s
       timeout: 5s
       retries: 30
@@ -70,7 +71,7 @@ services:
       - "${KIBANA_PORT}:5601"
 
   arangodb:
-    image: arangodb:3
+    image: arangodb:3.11
     container_name: v360_arango
     environment:
       ARANGO_ROOT_PASSWORD: ${ARANGO_ROOT_PASSWORD}
